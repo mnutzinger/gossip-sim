@@ -13,22 +13,24 @@ network (see [Examples](#examples)).
 
 ## Build
 
-To build the project you need to have `cmake` >= 3.12, `boost` >= 1.74.0 and `conan` installed. On
-macOS those can be installed via `brew`.
+To build the project you need to have `cmake` >= 3.12 and `conan` installed. On macOS those can be
+installed via `brew`.
 
-Dependencies other than `boost` can be installed via `conan`:
+All dependencies can be installed via `conan`: [boost](https://boost.org),
 [nlohmann/json](https://github.com/nlohmann/json) and
 [ericniebler/range-v3](https://github.com/ericniebler/range-v3).
 
 All dependencies from `conan` only need to be installed once after initial checkout:
 
 ```
-$ mkdir build
-$ cd build
-$ conan install .. # reads requirements from conanfile.txt
+$ conan install -if build -of build --build=missing . # reads requirements from conanfile.txt
 ```
 
-Following this step, run `cmake` with your favorite generator and build the project.
+Following this step, run `cmake` with your favorite generator and build the project:
+
+```
+$ cmake -B build -G Ninja && ninja -C build
+```
 
 Further, two Python helper scripts are included in `util/`
 (see [Python scripts](#python-scripts)), `requirements.txt` lists their dependencies.
